@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import problema02.models.Cliente;
 import problema02.models.Pais;
+import problema02.models.Utilitario;
 
 /**
  *
  * @author leona
  */
 public class jfCliente extends javax.swing.JFrame {
+    //Declaração de algumas variáveis
+    ArrayList<Cliente> cliente = new ArrayList();
 
     /**
      * Creates new form jfPrincipal
@@ -143,39 +146,54 @@ public class jfCliente extends javax.swing.JFrame {
 
     private void jbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarActionPerformed
         // TODO add your handling code here:
-        ArrayList<Cliente> cliente = new ArrayList();
         Cliente c = new Cliente();
         Pais p = new Pais();
         String pais = jtPais.getText();
         String nome = jtNome.getText();
         String telefone = jtTelefone.getText();
         int idade = Integer.parseInt(jtIdade.getText());
-        c.setNome(nome);
-        c.setTelefone(telefone);
-        p.setPais(pais);
-        c.setPais(p);
-        c.setIdade(idade);
-        cliente.add(c);
         
-        if(idade<18)
-            c.setLimiteCredito(100);
-        else if(idade>=18 && idade<=35)
-            c.setLimiteCredito(300);
-        else if(idade>35)
-            c.setLimiteCredito(500);
-        
-        for(int i=0; i<cliente.size();i++){
-            if(cliente.get(i).getPais().getPais().equals("Brasil")){
-                cliente.get(i).setLimiteCredito(c.getLimiteCredito()+100);
+        if(Utilitario.verificaCliente(nome, cliente)){
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Nome de cliente já cadastrado");
+        }else{
+            c.setNome(nome);
+            c.setTelefone(telefone);
+            p.setPais(pais);
+            c.setPais(p);
+            c.setIdade(idade);
+            cliente.add(c);
+            
+            if(idade<18)
+                c.setLimiteCredito(100);
+            else if(idade>=18 && idade<=35)
+                c.setLimiteCredito(300);
+            else if(idade>35)
+                c.setLimiteCredito(500);
+       
+            //Verificando se o país adicionado é o Brasil
+            if(c.getPais().getPais().equals("Brasil")){
+                cliente.get(cliente.size()-1).setLimiteCredito(c.getLimiteCredito()+100);
             }
+            
+            /*
+            =========================== OLHAR ESSE TRECHO DO CÓDIGO DEPOIS ====================================================================
+            
+            for(int i=0; i<cliente.size();i++){
+                if(cliente.get(i).getPais().getPais().equals("Brasil")){
+                    cliente.get(i).setLimiteCredito(c.getLimiteCredito()+100);
+                }
+            }*/
+        
+            JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
+                    + "\nTelefone: " + c.getTelefone()
+                    + "\nLimite de Crédito: " + c.getLimiteCredito()
+                    + "\nPaís: " + c.getPais().getPais()
+                    + "\nIdade: " + c.getIdade()
+                    + "\nQtd Clientes cadastrados: " + cliente.size());
+            JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
         }
         
-        JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
-        + "\nTelefone: " + c.getTelefone()
-        + "\nLimite de Crédito: " + c.getLimiteCredito()
-        + "\nPaís: " + c.getPais().getPais()
-        + "\nIdade: " + c.getIdade());
-        JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
+        
 
     }//GEN-LAST:event_jbGravarActionPerformed
 

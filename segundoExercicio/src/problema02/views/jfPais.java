@@ -8,13 +8,16 @@ package problema02.views;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import problema02.models.Pais;
+import problema02.models.Utilitario;
 
 /**
  *
  * @author leona
  */
 public class jfPais extends javax.swing.JFrame {
-
+    //Declaração de varáveis
+    ArrayList<Pais> pais = new ArrayList();
+    
     /**
      * Creates new form jfPais
      */
@@ -94,17 +97,23 @@ public class jfPais extends javax.swing.JFrame {
 
     private void jbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarActionPerformed
         // TODO add your handling code here:
-        ArrayList<Pais> pais = new ArrayList();
         Pais p = new Pais();
         String nome = jtPais.getText();
         String sigla = jtSigla.getText();
         p.setPais(nome);
         p.setSigla(sigla);
-        pais.add(p);
+        
 
+        if(Utilitario.verificaPais(nome, pais)){
+            JOptionPane.showMessageDialog(jbGravar, "Erro: País já cadastrado");
+        }else{
+            pais.add(p);
             JOptionPane.showMessageDialog(jbGravar,"\nPaís: " + p.getPais()
             + "\nSigla: " + p.getSigla());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
+          
+        }
+            
         
     }//GEN-LAST:event_jbGravarActionPerformed
 

@@ -32,16 +32,20 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jtLimite" min="-2" pref="91" max="-2" attributes="0"/>
-                          <Component id="jtPais" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
-                          <Component id="jtNome" alignment="1" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jtPais" alignment="0" pref="91" max="32767" attributes="0"/>
+                              <Component id="jtNome" alignment="0" pref="91" max="32767" attributes="0"/>
+                              <Component id="jtIdade" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                           <Component id="jtTelefone" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -62,26 +66,31 @@
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtLimite" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jtTelefone" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtPais" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtPais" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="jbGravar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,13 +124,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtTelefoneActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Limite de Cr&#xe9;dito"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtLimite">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pa&#xed;s"/>
@@ -135,6 +137,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGravarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Idade"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtIdade">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtIdadeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
