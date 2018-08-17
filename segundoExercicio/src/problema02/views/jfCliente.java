@@ -32,11 +32,11 @@ public class jfCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtTelefone = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jtLimite = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jtPais = new javax.swing.JTextField();
         jbGravar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jtIdade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,8 +59,6 @@ public class jfCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Limite de Crédito");
-
         jLabel5.setText("País");
 
         jbGravar.setText("Gravar");
@@ -69,6 +67,8 @@ public class jfCliente extends javax.swing.JFrame {
                 jbGravarActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Idade");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,18 +80,21 @@ public class jfCliente extends javax.swing.JFrame {
                         .addGap(143, 143, 143)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(15, 15, 15)))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jtPais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(jtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(jtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(jtIdade, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addComponent(jbGravar)))
@@ -105,22 +108,22 @@ public class jfCliente extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(36, 36, 36)
                 .addComponent(jbGravar)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,18 +141,26 @@ public class jfCliente extends javax.swing.JFrame {
         String pais = jtPais.getText();
         String nome = jtNome.getText();
         String telefone = jtTelefone.getText();
-        float limite = Float.parseFloat(jtLimite.getText());
+        int idade = Integer.parseInt(jtIdade.getText());
         c.setNome(nome);
         c.setTelefone(telefone);
-        c.setLimiteCredito(limite);
         p.setPais(pais);
         c.setPais(p);
+        c.setIdade(idade);
         cliente.add(c);
+        
+        if(idade<18)
+            c.setLimiteCredito(100);
+        else if(idade>=18 && idade<=35)
+            c.setLimiteCredito(300);
+        else if(idade>35)
+            c.setLimiteCredito(500);
         
         JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
         + "\nTelefone: " + c.getTelefone()
         + "\nLimite de Crédito: " + c.getLimiteCredito()
-        + "\nPaís: " + c.getPais().getPais());
+        + "\nPaís: " + c.getPais().getPais()
+        + "\nIdade: " + c.getIdade());
         JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
 
     }//GEN-LAST:event_jbGravarActionPerformed
@@ -198,10 +209,10 @@ public class jfCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbGravar;
-    private javax.swing.JTextField jtLimite;
+    private javax.swing.JTextField jtIdade;
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtPais;
     private javax.swing.JTextField jtTelefone;
@@ -210,7 +221,7 @@ public class jfCliente extends javax.swing.JFrame {
     private void limparCampos(){
       jtNome.setText("");
       jtTelefone.setText("");
-      jtLimite.setText("");
       jtPais.setText("");
+      jtIdade.setText("");
     }
 }

@@ -9,15 +9,17 @@ public class Cliente {
     String telefone;
     float limiteCredito;
     Pais pais;
+    int idade;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String telefone, float limiteCredito, Pais pais) {
+    public Cliente(String nome, String telefone, float limiteCredito, Pais pais, int idade) {
         this.nome = nome;
         this.telefone = telefone;
         this.limiteCredito = limiteCredito;
         this.pais = pais;
+        this.idade = idade;
     }
 
     public String getNome() {
@@ -50,5 +52,13 @@ public class Cliente {
 
     public void setPais(Pais pais) {
         this.pais = pais;
+    }
+    
+    public int getIdade(){
+        return idade;
+    }
+    
+    public void setIdade(int idade){
+        this.idade = idade;
     }
 }
