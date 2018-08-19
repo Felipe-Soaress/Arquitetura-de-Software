@@ -39,6 +39,8 @@ public class jfPais extends javax.swing.JFrame {
         jtPais = new javax.swing.JTextField();
         jtSigla = new javax.swing.JTextField();
         jbGravar = new javax.swing.JButton();
+        jtCodigoTelefone = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,24 +57,34 @@ public class jfPais extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Código Telefone");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 102, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(65, 65, 65)
-                        .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3)
+                        .addGap(31, 31, 31)
+                        .addComponent(jtCodigoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(129, 129, 129))
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(148, 148, 148)
                 .addComponent(jbGravar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -87,9 +99,13 @@ public class jfPais extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(63, 63, 63)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtCodigoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(33, 33, 33)
                 .addComponent(jbGravar)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,11 +113,13 @@ public class jfPais extends javax.swing.JFrame {
 
     private void jbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarActionPerformed
         // TODO add your handling code here:
-        Pais p = new Pais();
+        //Pais p = new Pais();
         String nome = jtPais.getText();
         String sigla = jtSigla.getText();
-        p.setPais(nome);
-        p.setSigla(sigla);
+        String codigoTelefone = jtCodigoTelefone.getText();
+        //p.setPais(nome);
+        //p.setSigla(sigla);
+        Pais p = new Pais(nome,sigla,codigoTelefone);
         
 
         if(Utilitario.verificaPais(nome, pais)){
@@ -109,7 +127,7 @@ public class jfPais extends javax.swing.JFrame {
         }else{
             pais.add(p);
             JOptionPane.showMessageDialog(jbGravar,"\nPaís: " + p.getPais()
-            + "\nSigla: " + p.getSigla());
+            + "\nSigla: " + p.getSigla()+ "\nCodigo Telefone: " + p.getCodigoTelefone());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
           
         }
@@ -155,7 +173,9 @@ public class jfPais extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jbGravar;
+    private javax.swing.JTextField jtCodigoTelefone;
     private javax.swing.JTextField jtPais;
     private javax.swing.JTextField jtSigla;
     // End of variables declaration//GEN-END:variables
@@ -163,5 +183,6 @@ public class jfPais extends javax.swing.JFrame {
     private void limparCampos(){
       jtPais.setText("");
       jtSigla.setText("");
+      jtCodigoTelefone.setText("");
     }
 }
