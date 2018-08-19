@@ -222,6 +222,9 @@ public class jfCliente extends javax.swing.JFrame {
 
     private void jbClienteCadastrarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClienteCadastrarPaisActionPerformed
         // TODO add your handling code here:
+        jfPais TelaPais = new jfPais();
+ 
+        TelaPais.setVisible(true);
     }//GEN-LAST:event_jbClienteCadastrarPaisActionPerformed
 
     /**
