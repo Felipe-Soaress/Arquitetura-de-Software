@@ -155,6 +155,8 @@ public class jfCliente extends javax.swing.JFrame {
         
         if(Utilitario.verificaCliente(nome, cliente)){
             JOptionPane.showMessageDialog(jbGravar, "Erro: Nome de cliente já cadastrado");
+        }else if(!Utilitario.verificaCodigoTelefone(telefone, paisList)){ //CRIEI A FUNÇÃO PARA VERIFICAR, SÓ PRECISO VER COMO VOU RECEBER AQUI O ARRAY DE PAÍSES PARA MANDAR PARA O UTILITARIO
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Código do País inválido");
         }else{
             c.setNome(nome);
             c.setTelefone(telefone);

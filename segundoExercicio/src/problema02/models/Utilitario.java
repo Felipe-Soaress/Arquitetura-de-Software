@@ -40,4 +40,14 @@ public class Utilitario {
         
         return false;
     }
+    public static boolean verificaCodigoTelefone(String telefone, ArrayList<Pais> paisList){
+        char[] tel = telefone.toCharArray();
+        for(int i = 0; i < paisList.size(); i++ ){
+            char[] codigo = paisList.get(i).getCodigoTelefone().toCharArray();
+            if(codigo[0] == tel[0] && codigo[1] == tel[1])
+                return true;
+        }
+        
+        return false;
+    }
 }
