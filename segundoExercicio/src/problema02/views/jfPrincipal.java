@@ -107,7 +107,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         //p.setPais(nome);
         //p.setSigla(sigla);
-        
+        jfPais TelaPais = new jfPais();
+ 
+        TelaPais.setVisible(true);
         
 
         
@@ -117,10 +119,14 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarClienteActionPerformed
         // TODO add your handling code here:
+        jfCliente TelaCliente = new jfCliente();
+ 
+        TelaCliente.setVisible(true);
     }//GEN-LAST:event_jbCadastrarClienteActionPerformed
 
     private void jbExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExitActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jbExitActionPerformed
 
     /**
