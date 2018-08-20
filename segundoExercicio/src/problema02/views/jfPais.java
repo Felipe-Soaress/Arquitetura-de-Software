@@ -16,7 +16,7 @@ import problema02.models.Utilitario;
  */
 public class jfPais extends javax.swing.JFrame {
     //Declaração de varáveis
-    protected static ArrayList<Pais> paisLista = new ArrayList();
+    protected static ArrayList<Pais> paisList = new ArrayList();
     
     /**
      * Creates new form jfPais
@@ -39,6 +39,9 @@ public class jfPais extends javax.swing.JFrame {
         jtPais = new javax.swing.JTextField();
         jtSigla = new javax.swing.JTextField();
         jbGravar = new javax.swing.JButton();
+        jtCodigoTelefone = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,24 +58,35 @@ public class jfPais extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Código Telefone(+)");
+
+        jLabel4.setText("ex: 55");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 102, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(65, 65, 65)
-                        .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(129, 129, 129))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtCodigoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(148, 148, 148)
                 .addComponent(jbGravar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -87,9 +101,14 @@ public class jfPais extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtSigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(63, 63, 63)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtCodigoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(33, 33, 33)
                 .addComponent(jbGravar)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,25 +116,28 @@ public class jfPais extends javax.swing.JFrame {
 
     private void jbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarActionPerformed
         // TODO add your handling code here:
-        Pais p = new Pais();
+        //Pais p = new Pais();
         String nome = jtPais.getText();
         String sigla = jtSigla.getText();
-        p.setPais(nome);
-        p.setSigla(sigla);
+        String codigoTelefone = jtCodigoTelefone.getText();
+        //p.setPais(nome);
+        //p.setSigla(sigla);
+        Pais p = new Pais(nome,sigla,codigoTelefone);
         
 
-        if(Utilitario.verificaPais(nome, paisLista) != null){
+        if(Utilitario.verificaPais(nome, paisList) != null){
             JOptionPane.showMessageDialog(jbGravar, "Erro: País já cadastrado");
+        }
+        if(nome.length() == 0){
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Nome do País não pode ser nulo");
         }else{
-            paisLista.add(p);
+            paisList.add(p);
             JOptionPane.showMessageDialog(jbGravar,"\nPaís: " + p.getPais()
-            + "\nSigla: " + p.getSigla());
+            + "\nSigla: " + p.getSigla()+ "\nCodigo Telefone: " + p.getCodigoTelefone());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
             
-            //Para teste
-            new jfCliente().setVisible(true);
+            //Tela de cadastro ira fechar assim que terminar o cadastro do país
             dispose();
-            //Fim teste
             
           
         }
@@ -161,7 +183,10 @@ public class jfPais extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbGravar;
+    private javax.swing.JTextField jtCodigoTelefone;
     private javax.swing.JTextField jtPais;
     private javax.swing.JTextField jtSigla;
     // End of variables declaration//GEN-END:variables
@@ -169,5 +194,6 @@ public class jfPais extends javax.swing.JFrame {
     private void limparCampos(){
       jtPais.setText("");
       jtSigla.setText("");
+      jtCodigoTelefone.setText("");
     }
 }

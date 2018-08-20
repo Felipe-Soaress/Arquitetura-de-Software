@@ -40,6 +40,7 @@ public class jfCliente extends javax.swing.JFrame {
         jbGravar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jtIdade = new javax.swing.JTextField();
+        jbClienteCadastrarPais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +55,7 @@ public class jfCliente extends javax.swing.JFrame {
 
         jLabel2.setText("Nome");
 
-        jLabel3.setText("Telefone");
+        jLabel3.setText("Telefone(+)");
 
         jtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +77,13 @@ public class jfCliente extends javax.swing.JFrame {
         jtIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtIdadeActionPerformed(evt);
+            }
+        });
+
+        jbClienteCadastrarPais.setText("Cadastrar País");
+        jbClienteCadastrarPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbClienteCadastrarPaisActionPerformed(evt);
             }
         });
 
@@ -104,9 +112,11 @@ public class jfCliente extends javax.swing.JFrame {
                                 .addComponent(jtIdade, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jbGravar)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addGap(116, 116, 116)
+                        .addComponent(jbGravar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbClienteCadastrarPais)))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,20 +131,19 @@ public class jfCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jbGravar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGravar)
+                    .addComponent(jbClienteCadastrarPais))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -154,18 +163,22 @@ public class jfCliente extends javax.swing.JFrame {
         int idade = Integer.parseInt(jtIdade.getText());
         
         //Atribuindo qual vai ser o pais por sigla ou nome
-        Pais pais= pais = Utilitario.verificaPais(nome_pais, jfPais.paisLista);
+        Pais pais= Utilitario.verificaPais(nome_pais, jfPais.paisList);
         
         //Fazendo verificações para o cadastro
-        if(Utilitario.verificaCliente(nome, clienteLista)){
+        
+        if(nome.length() < 5){
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Nome de cliente inválido (deve haver pelo menos 5 caracteres)");
+        
+        }else if(Utilitario.verificaCliente(nome, clienteLista)){ 
             JOptionPane.showMessageDialog(jbGravar, "Erro: Nome de cliente já cadastrado");
+        
         }else if(pais == null){
             JOptionPane.showMessageDialog(jbGravar, "Erro: Pais não existe ou não foi cadastrado");
             
-            //Para teste
-            new jfPais().setVisible(true);
-            dispose();
-            //fim teste
+        }else if(!Utilitario.verificaCodigoTelefone(pais ,telefone)){ //CRIEI A FUNÇÃO PARA VERIFICAR, SÓ PRECISO VER COMO VOU RECEBER AQUI O ARRAY DE PAÍSES PARA MANDAR PARA O UTILITARIO
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Código do País inválido");
+
         }else{
             c.setNome(nome);
             c.setTelefone(telefone);
@@ -184,18 +197,10 @@ public class jfCliente extends javax.swing.JFrame {
             if(c.getPais().getPais().equals("Brasil")){
                 clienteLista.get(clienteLista.size()-1).setLimiteCredito(c.getLimiteCredito()+100);
             }
-            
-            /*
-            =========================== OLHAR ESSE TRECHO DO CÓDIGO DEPOIS ====================================================================
-            
-            for(int i=0; i<cliente.size();i++){
-            if(cliente.get(i).getPais().getPais().equals("Brasil")){
-            cliente.get(i).setLimiteCredito(c.getLimiteCredito()+100);
-            }
-            }*/
+  
             
             
-            
+            //Printando informações do cadastradas
             JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
                     + "\nTelefone: " + c.getTelefone()
                     + "\nLimite de Crédito: " + c.getLimiteCredito()
@@ -203,9 +208,8 @@ public class jfCliente extends javax.swing.JFrame {
                     + "\nIdade: " + c.getIdade());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
         }
-        
-        
 
+        
     }//GEN-LAST:event_jbGravarActionPerformed
 
     private void jtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefoneActionPerformed
@@ -215,6 +219,13 @@ public class jfCliente extends javax.swing.JFrame {
     private void jtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtIdadeActionPerformed
+
+    private void jbClienteCadastrarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClienteCadastrarPaisActionPerformed
+        // TODO add your handling code here:
+        jfPais TelaPais = new jfPais();
+ 
+        TelaPais.setVisible(true);
+    }//GEN-LAST:event_jbClienteCadastrarPaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,6 +269,7 @@ public class jfCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbClienteCadastrarPais;
     private javax.swing.JButton jbGravar;
     private javax.swing.JTextField jtIdade;
     private javax.swing.JTextField jtNome;

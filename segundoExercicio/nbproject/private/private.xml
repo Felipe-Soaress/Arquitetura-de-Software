@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/Problema02.java</file>
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/problema02/models/Utilitario.java</file>
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/problema02/models/Pais.java</file>
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/problema02/models/Cliente.java</file>
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/problema02/views/jfCliente.java</file>
             <file>file:/C:/Users/gutto/Google%20Drive/UTF/5º%20Período/Arquitetura%20de%20Software/Problema%202/Arquitetura-de-Software/segundoExercicio/src/problema02/views/jfPais.java</file>
+=======
+            <file>file:/C:/Users/felip/Desktop/Arquitetura-de-Software/segundoExercicio/src/problema02/views/jfPais.java</file>
+            <file>file:/C:/Users/felip/Desktop/Arquitetura-de-Software/segundoExercicio/src/problema02/models/Utilitario.java</file>
+            <file>file:/C:/Users/felip/Desktop/Arquitetura-de-Software/segundoExercicio/src/problema02/models/Pais.java</file>
+            <file>file:/C:/Users/felip/Desktop/Arquitetura-de-Software/segundoExercicio/src/Problema02.java</file>
+>>>>>>> 65e48318b88c4313edb5af6f1b98ce53ec76977c
         </group>
     </open-files>
 </project-private>

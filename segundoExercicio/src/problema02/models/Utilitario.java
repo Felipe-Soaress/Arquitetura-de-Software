@@ -27,9 +27,9 @@ public class Utilitario {
         return false;
     }
     
-    /*Função que verifica se Pais já existe no ArrayList
-    - Se existir retorna verdadeiro
-    - Caso contrário, retorna falso
+    /*Função que encontra se pais existe na lista
+    - Se existir retorna pais
+    - Caso contrário, retorna null
     */
     
     public static Pais verificaPais(String nome, ArrayList<Pais> paisList){
@@ -46,6 +46,10 @@ public class Utilitario {
         return null;
     }
     
+    /*Função que encontra o pais com a sigla informada
+    - retorna o pais se existir
+    - caso contrário, retorna null
+    */
     public static Pais verificaPaisPorSigla(String nome, ArrayList<Pais> paisList){
         for(int i = 0; i < paisList.size(); i++ ){
             if(paisList.get(i).getSigla().equalsIgnoreCase(nome))
@@ -53,5 +57,13 @@ public class Utilitario {
         }
         
         return null;
+    }
+    
+    //Faz a verificação se codigo do telefone é o mesmo do país digitado
+    public static boolean verificaCodigoTelefone(Pais pais, String telefone){
+    
+        //Retorna verdadeiro se iguais e falso se diferentes
+        return pais.getCodigoTelefone().equals(telefone.substring(0,2));
+    
     }
 }
