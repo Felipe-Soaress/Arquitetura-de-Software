@@ -1,0 +1,71 @@
+[33mcommit e8b8a002d2f7a3055317a6c869e6b8b33376104f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: gustavodealmeida <guttoalmeida@hotmail.com>
+Date:   Sun Aug 19 23:14:52 2018 -0300
+
+    Cada país pode ser identificado pelo nome e sigla
+
+[33mcommit 3239fea66708240b779a742831f8ff63897ddfcd[m
+Author: gustavodealmeida <guttoalmeida@hotmail.com>
+Date:   Fri Aug 17 18:19:26 2018 -0300
+
+    Adicionando funções de verificação (nome cliente e país), além de algumas melhorias
+
+[33mcommit 6c0aaf38487f8b467b773f3d6fd873abf242fca4[m
+Author: Leonardo <leonardo_tsuji@hotmail.com>
+Date:   Fri Aug 17 14:07:01 2018 -0300
+
+    Cliente que mora no Brasil
+
+[33mcommit ca70a273d081bbe60b3b149c361d42bb641c643b[m
+Author: Leonardo <leonardo_tsuji@hotmail.com>
+Date:   Fri Aug 17 13:37:31 2018 -0300
+
+    Limite de crédito por idade
+
+[33mcommit c62c423b3da57c21f378ceb04e3815aeef131d71[m
+Author: Leonardo <leonardo_tsuji@hotmail.com>
+Date:   Fri Aug 17 13:35:15 2018 -0300
+
+    Limite de crédito por idade
+
+[33mcommit 8946a408c0b69f869a226a2df8044c4423e52e4b[m
+Author: Leonardo <leonardo_tsuji@hotmail.com>
+Date:   Fri Aug 17 12:18:11 2018 -0300
+
+    Criação de país e cliente
+
+[33mcommit 785d97a20f0cbc1515500ada874ba9b10391e6b8[m
+Author: Leonardo <leonardo_tsuji@hotmail.com>
+Date:   Fri Aug 17 01:11:04 2018 -0300
+
+    Leonardo
+
+[33mcommit d22ccea0cc0659dbd7f2952e2cb170406edb08ac[m
+Author: Felipe Soares da Silva <37205032+Felipe-Soaress@users.noreply.github.com>
+Date:   Fri Aug 17 00:54:31 2018 -0300
+
+    Update README.md
+
+[33mcommit e6bc469592a2818f585697a5703475081e355676[m
+Author: Felipe Soares da Silva <37205032+Felipe-Soaress@users.noreply.github.com>
+Date:   Fri Aug 17 00:53:41 2018 -0300
+
+    Update README.md
+
+[33mcommit b29d89a11bf044f039fb83512d578340b8117759[m
+Author: Felipe Soares <felipe_soares_2@hotmail.com>
+Date:   Fri Aug 17 00:52:47 2018 -0300
+
+    add
+
+[33mcommit a5d5a0e98bfb3b3bc680c393ae920926ef6c6e7f[m
+Author: Felipe Soares <felipe_soares_2@hotmail.com>
+Date:   Sun Aug 12 20:01:32 2018 -0300
+
+    Primeiro Exercício
+
+[33mcommit 6a87ee30b9796d48eb3b44d8a0fc93bd399a5ff9[m
+Author: Felipe Soares da Silva <37205032+Felipe-Soaress@users.noreply.github.com>
+Date:   Sun Aug 12 18:37:49 2018 -0300
+
+    Initial commit

@@ -43,6 +43,7 @@ public class jfCliente extends javax.swing.JFrame {
         jbClienteCadastrarPais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Problema02");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("  Cliente");
@@ -184,29 +185,20 @@ public class jfCliente extends javax.swing.JFrame {
             c.setTelefone(telefone);
             c.setPais(pais);
             c.setIdade(idade);
+            c.setLimiteCredito(Utilitario.calculaLimiteCliente(idade, pais.getPais()));
             clienteLista.add(c);
-            
-            if(idade<18)
-                c.setLimiteCredito(100);
-            else if(idade>=18 && idade<=35)
-                c.setLimiteCredito(300);
-            else if(idade>35)
-                c.setLimiteCredito(500);
-       
-            //Verificando se o país adicionado é o Brasil
-            if(c.getPais().getPais().equals("Brasil")){
-                clienteLista.get(clienteLista.size()-1).setLimiteCredito(c.getLimiteCredito()+100);
-            }
-  
             
             
             //Printando informações do cadastradas
             JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
-                    + "\nTelefone: " + c.getTelefone()
-                    + "\nLimite de Crédito: " + c.getLimiteCredito()
-                    + "\nPaís: " + c.getPais().getPais()
-                    + "\nIdade: " + c.getIdade());
+            + "\nTelefone: " + c.getTelefone()
+            + "\nLimite de Crédito: " + c.getLimiteCredito()
+            + "\nPaís: " + c.getPais().getPais()
+            + "\nIdade: " + c.getIdade());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
+            
+            //fechar janela de cadastro cliente (obs: janela principal sempre fica aberta)
+            dispose();
         }
 
         

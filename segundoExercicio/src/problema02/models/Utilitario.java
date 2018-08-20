@@ -11,6 +11,7 @@ package problema02.models;
  */
 import java.util.ArrayList;
 
+
 public class Utilitario { 
     
     /*Função que verifica se Cliente já existe no ArrayList
@@ -65,5 +66,23 @@ public class Utilitario {
         //Retorna verdadeiro se iguais e falso se diferentes
         return pais.getCodigoTelefone().equals(telefone.substring(0,2));
     
+    }
+    
+    //Função para calcular o limite
+    public static float calculaLimiteCliente(int idade, String nome_pais){
+        float limite = 0;
+        
+        if(idade<18)
+            limite = 100;
+        else if(idade>=18 && idade<=35)
+            limite = 300;
+        else
+            limite = 500;
+        
+        //Verificando se o país adicionado é o Brasil
+        if(nome_pais.equals("Brasil"))
+            limite += 100;
+        
+        return limite;
     }
 }
