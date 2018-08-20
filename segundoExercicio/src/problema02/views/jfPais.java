@@ -16,7 +16,7 @@ import problema02.models.Utilitario;
  */
 public class jfPais extends javax.swing.JFrame {
     //Declaração de varáveis
-    ArrayList<Pais> pais = new ArrayList();
+    protected static ArrayList<Pais> paisLista = new ArrayList();
     
     /**
      * Creates new form jfPais
@@ -104,13 +104,19 @@ public class jfPais extends javax.swing.JFrame {
         p.setSigla(sigla);
         
 
-        if(Utilitario.verificaPais(nome, pais)){
+        if(Utilitario.verificaPais(nome, paisLista) != null){
             JOptionPane.showMessageDialog(jbGravar, "Erro: País já cadastrado");
         }else{
-            pais.add(p);
+            paisLista.add(p);
             JOptionPane.showMessageDialog(jbGravar,"\nPaís: " + p.getPais()
             + "\nSigla: " + p.getSigla());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
+            
+            //Para teste
+            new jfCliente().setVisible(true);
+            dispose();
+            //Fim teste
+            
           
         }
             

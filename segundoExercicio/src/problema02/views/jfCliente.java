@@ -12,7 +12,7 @@ import problema02.models.Utilitario;
  */
 public class jfCliente extends javax.swing.JFrame {
     //Declaração de algumas variáveis
-    ArrayList<Cliente> cliente = new ArrayList();
+    protected static ArrayList<Cliente> clienteLista = new ArrayList();
 
     /**
      * Creates new form jfPrincipal
@@ -147,21 +147,31 @@ public class jfCliente extends javax.swing.JFrame {
     private void jbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarActionPerformed
         // TODO add your handling code here:
         Cliente c = new Cliente();
-        Pais p = new Pais();
-        String pais = jtPais.getText();
+        
+        String nome_pais = jtPais.getText();
         String nome = jtNome.getText();
         String telefone = jtTelefone.getText();
         int idade = Integer.parseInt(jtIdade.getText());
         
-        if(Utilitario.verificaCliente(nome, cliente)){
+        //Atribuindo qual vai ser o pais por sigla ou nome
+        Pais pais= pais = Utilitario.verificaPais(nome_pais, jfPais.paisLista);
+        
+        //Fazendo verificações para o cadastro
+        if(Utilitario.verificaCliente(nome, clienteLista)){
             JOptionPane.showMessageDialog(jbGravar, "Erro: Nome de cliente já cadastrado");
+        }else if(pais == null){
+            JOptionPane.showMessageDialog(jbGravar, "Erro: Pais não existe ou não foi cadastrado");
+            
+            //Para teste
+            new jfPais().setVisible(true);
+            dispose();
+            //fim teste
         }else{
             c.setNome(nome);
             c.setTelefone(telefone);
-            p.setPais(pais);
-            c.setPais(p);
+            c.setPais(pais);
             c.setIdade(idade);
-            cliente.add(c);
+            clienteLista.add(c);
             
             if(idade<18)
                 c.setLimiteCredito(100);
@@ -172,24 +182,25 @@ public class jfCliente extends javax.swing.JFrame {
        
             //Verificando se o país adicionado é o Brasil
             if(c.getPais().getPais().equals("Brasil")){
-                cliente.get(cliente.size()-1).setLimiteCredito(c.getLimiteCredito()+100);
+                clienteLista.get(clienteLista.size()-1).setLimiteCredito(c.getLimiteCredito()+100);
             }
             
             /*
             =========================== OLHAR ESSE TRECHO DO CÓDIGO DEPOIS ====================================================================
             
             for(int i=0; i<cliente.size();i++){
-                if(cliente.get(i).getPais().getPais().equals("Brasil")){
-                    cliente.get(i).setLimiteCredito(c.getLimiteCredito()+100);
-                }
+            if(cliente.get(i).getPais().getPais().equals("Brasil")){
+            cliente.get(i).setLimiteCredito(c.getLimiteCredito()+100);
+            }
             }*/
-        
+            
+            
+            
             JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
                     + "\nTelefone: " + c.getTelefone()
                     + "\nLimite de Crédito: " + c.getLimiteCredito()
                     + "\nPaís: " + c.getPais().getPais()
-                    + "\nIdade: " + c.getIdade()
-                    + "\nQtd Clientes cadastrados: " + cliente.size());
+                    + "\nIdade: " + c.getIdade());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
         }
         

@@ -20,7 +20,7 @@ public class Utilitario {
     
     public static boolean verificaCliente(String nome, ArrayList<Cliente> clienteList){
         for(int i = 0; i < clienteList.size(); i++ ){
-            if(clienteList.get(i).getNome().equals(nome))
+            if(clienteList.get(i).getNome().equalsIgnoreCase(nome))
                 return true;
         }
         
@@ -32,12 +32,26 @@ public class Utilitario {
     - Caso contrário, retorna falso
     */
     
-    public static boolean verificaPais(String nome, ArrayList<Pais> paisList){
-        for(int i = 0; i < paisList.size(); i++ ){
-            if(paisList.get(i).getPais().equals(nome))
-                return true;
+    public static Pais verificaPais(String nome, ArrayList<Pais> paisList){
+        
+        if(nome.length() == 3){
+           return verificaPaisPorSigla(nome, paisList);
         }
         
-        return false;
+        for(int i = 0; i < paisList.size(); i++ ){
+            if(paisList.get(i).getPais().equalsIgnoreCase(nome))
+                return paisList.get(i);
+        }
+        
+        return null;
+    }
+    
+    public static Pais verificaPaisPorSigla(String nome, ArrayList<Pais> paisList){
+        for(int i = 0; i < paisList.size(); i++ ){
+            if(paisList.get(i).getSigla().equalsIgnoreCase(nome))
+                return paisList.get(i);
+        }
+        
+        return null;
     }
 }
