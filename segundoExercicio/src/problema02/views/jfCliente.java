@@ -177,7 +177,7 @@ public class jfCliente extends javax.swing.JFrame {
         }else if(pais == null){
             JOptionPane.showMessageDialog(jbGravar, "Erro: Pais não existe ou não foi cadastrado");
             
-        }else if(!Utilitario.verificaCodigoTelefone(pais ,telefone)){ //CRIEI A FUNÇÃO PARA VERIFICAR, SÓ PRECISO VER COMO VOU RECEBER AQUI O ARRAY DE PAÍSES PARA MANDAR PARA O UTILITARIO
+        }else if( !(pais.getCodigoTelefone().equals(telefone.substring(0,2))) ){ //Faz a verificação se codigo do telefone é o mesmo do país digitado
             JOptionPane.showMessageDialog(jbGravar, "Erro: Código do País inválido");
 
         }else{
@@ -189,7 +189,7 @@ public class jfCliente extends javax.swing.JFrame {
             clienteLista.add(c);
             
             
-            //Printando informações do cadastradas
+            //Printando informações cadastradas
             JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
             + "\nTelefone: " + c.getTelefone()
             + "\nLimite de Crédito: " + c.getLimiteCredito()
