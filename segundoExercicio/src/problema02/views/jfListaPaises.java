@@ -11,14 +11,14 @@ import problema02.models.Utilitario;
  *
  * @author leona
  */
-public class jfListaClientes extends javax.swing.JFrame {
+public class jfListaPaises extends javax.swing.JFrame {
     //Declaração de algumas variáveis
     protected static ArrayList<Cliente> clienteLista = new ArrayList();
 
     /**
      * Creates new form jfPrincipal
      */
-    public jfListaClientes() {
+    public jfListaPaises() {
         initComponents();
     }
 
@@ -41,21 +41,21 @@ public class jfListaClientes extends javax.swing.JFrame {
         setTitle("Problema02");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("  Clientes");
+        jLabel1.setText("Lista Países");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Idade", "Telefone", "País"
+                "País", "Sigla", "Código Telefone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -88,16 +88,16 @@ public class jfListaClientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(13, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(150, 150, 150)
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
+                                .addGap(99, 99, 99)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1)))
@@ -136,9 +136,9 @@ public class jfListaClientes extends javax.swing.JFrame {
             modeloTabela.removeRow(0);
         }
         
-        for (Cliente cliente : jfCliente.clienteLista) {
-            modeloTabela.addRow(new Object[] { cliente.getNome(),
-                cliente.getIdade(), cliente.getTelefone(), cliente.getPais().getPais() });
+        for (Pais pais : jfPais.paisList) {
+            modeloTabela.addRow(new Object[] { pais.getPais(),
+                pais.getSigla(), pais.getCodigoTelefone() });
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -147,6 +147,7 @@ public class jfListaClientes extends javax.swing.JFrame {
         
         //Irá fechar a janela de listagem (obs: janela principal semrpe aberta)
         dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -166,14 +167,18 @@ public class jfListaClientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jfListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jfListaPaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jfListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jfListaPaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jfListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jfListaPaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jfListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jfListaPaises.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -182,7 +187,7 @@ public class jfListaClientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfListaClientes().setVisible(true);
+                new jfListaPaises().setVisible(true);
             }
         });
     }

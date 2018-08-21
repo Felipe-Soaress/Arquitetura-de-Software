@@ -161,6 +161,8 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbListarPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarPaisesActionPerformed
         // TODO add your handling code here:
+        jfListaPaises TelaListaPaises = new jfListaPaises();
+        TelaListaPaises.setVisible(true);
     }//GEN-LAST:event_jbListarPaisesActionPerformed
 
     /**

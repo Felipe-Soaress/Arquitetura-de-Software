@@ -35,7 +35,7 @@ public class Utilitario {
     
     public static Pais verificaPais(String nome, ArrayList<Pais> paisList){
         
-        if(nome.length() == 3){
+        if(nome.length() == 2){ // As siglas de países possuem dois caracteres, por isso é analisado desta forma
            return verificaPaisPorSigla(nome, paisList);
         }
         
