@@ -38,6 +38,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbCadastrarPais = new javax.swing.JButton();
         jbCadastrarCliente = new javax.swing.JButton();
         jbExit = new javax.swing.JButton();
+        jbListarClientes = new javax.swing.JButton();
+        jbListarPaises = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Problema02");
@@ -66,23 +68,40 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbListarClientes.setText("Listar Clientes");
+        jbListarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbListarClientesActionPerformed(evt);
+            }
+        });
+
+        jbListarPaises.setText("Listar Países");
+        jbListarPaises.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbListarPaisesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbCadastrarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(155, 155, 155)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(88, 88, 88)
-                            .addComponent(jbCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jbExit)))
+                    .addComponent(jbListarPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbListarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jbCadastrarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jbCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(167, 167, 167)
+                            .addComponent(jbExit))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,7 +113,11 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addComponent(jbCadastrarCliente)
                 .addGap(18, 18, 18)
                 .addComponent(jbCadastrarPais)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jbListarClientes)
+                .addGap(18, 18, 18)
+                .addComponent(jbListarPaises)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jbExit)
                 .addContainerGap())
         );
@@ -129,6 +152,16 @@ public class jfPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jbExitActionPerformed
+
+    private void jbListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarClientesActionPerformed
+        // TODO add your handling code here:
+        jfListaClientes TelaListaClientes = new jfListaClientes();
+        TelaListaClientes.setVisible(true);
+    }//GEN-LAST:event_jbListarClientesActionPerformed
+
+    private void jbListarPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarPaisesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbListarPaisesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +204,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbCadastrarCliente;
     private javax.swing.JButton jbCadastrarPais;
     private javax.swing.JButton jbExit;
+    private javax.swing.JButton jbListarClientes;
+    private javax.swing.JButton jbListarPaises;
     // End of variables declaration//GEN-END:variables
     
     
