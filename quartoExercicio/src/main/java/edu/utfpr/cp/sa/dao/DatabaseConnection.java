@@ -19,7 +19,7 @@ public class DatabaseConnection {
     private static String password = "utfpr";
     private static Connection conn;
         
-    public static Connection getConnection(){
+    /*public static Connection getConnection(){
         try(Connection conn = DriverManager.getConnection(databaseURL, username, password)){
             if (conn != null) {
                 System.out.println("Connected");
@@ -28,13 +28,14 @@ public class DatabaseConnection {
             ex.printStackTrace();
         }
         return conn;
-    }
+    }*/
     
-    /*public Connection getConnection(){
+    //Testar qual estar certo
+    public Connection getConnection(){
         try {
             return DriverManager.getConnection(databaseURL, username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }

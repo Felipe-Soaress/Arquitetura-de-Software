@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -40,9 +41,10 @@ public class CountryDao {
         }
         
     }
-    public void getListaCountry(){
+    public ArrayList<Country> getListaCountry(){
         String sql = "select * from country";
         try{
+            ArrayList<Country> c = new ArrayList();
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
@@ -50,8 +52,10 @@ public class CountryDao {
                 String acronym = rs.getString("acronym");
                 int phoneDigits = rs.getInt("phoneDigits");
             }
+
             rs.close();
             stmt.close();
+            return c;
         }catch(SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
