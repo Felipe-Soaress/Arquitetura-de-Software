@@ -43,19 +43,24 @@ public class CountryDao {
     }
     public ArrayList<Country> getListaCountry(){
         String sql = "select * from country";
+        ArrayList<Country> cd = new ArrayList();
         try{
-            ArrayList<Country> c = new ArrayList();
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                String name = rs.getString("countryName");
-                String acronym = rs.getString("acronym");
-                int phoneDigits = rs.getInt("phoneDigits");
+                Country c = new Country();
+                
+                c.setId(rs.getInt("countryId"));
+                c.setName(rs.getString("countryName"));
+                c.setAcronym(rs.getString("acronym"));
+                c.setPhoneDigits(rs.getInt("phoneDigits"));
+                
+                cd.add(c);
             }
 
             rs.close();
             stmt.close();
-            return c;
+            return cd;
         }catch(SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -63,12 +68,13 @@ public class CountryDao {
     }
     
     public void update(Country country){
-        String sql = "update country set countryName = ?, acronym = ?, phoneDigits = ? where countryName = ?";
+        String sql = "update country set countryName = ?, acronym = ?, phoneDigits = ? where countryId = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, country.getName());
             stmt.setString(2, country.getAcronym());
             stmt.setInt(3, country.getPhoneDigits());
+            stmt.setInt(4, country.getId());
 
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -76,11 +82,13 @@ public class CountryDao {
         }
     }
     
-    public void delete(Country country){
-        String sql = "delete from country where countryName = ?";
+    public void delete(int id){
+        String sql = "delete from country where countryId = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1, country.getName());
+            stmt.setInt(1, id);
+            //stmt.setString(1, country.getName());
+            stmt.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();
             throw new RuntimeException(ex); 

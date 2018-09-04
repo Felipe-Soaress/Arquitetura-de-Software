@@ -33,6 +33,9 @@ public class DatabaseConnection {
     //Testar qual estar certo
     public Connection getConnection(){
         try {
+            if(conn != null){
+                System.out.println("Connected");
+            }
             return DriverManager.getConnection(databaseURL, username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);

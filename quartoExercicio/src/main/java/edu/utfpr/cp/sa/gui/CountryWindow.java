@@ -1,6 +1,5 @@
 package edu.utfpr.cp.sa.gui;
 
-import edu.utfpr.cp.sa.dao.CountryDao;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -10,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 
+import edu.utfpr.cp.sa.dao.CountryDao;
 import edu.utfpr.cp.sa.entity.Country;
 
 import java.awt.GridLayout;
@@ -26,7 +26,7 @@ import javax.swing.JTable;
 class CountryTableModel extends AbstractTableModel {
 	
 	private ArrayList<Country> countries;
-	private String columnNames[] = {"Name", "Acronym", "Phone Digits"};
+	private String columnNames[] = {"Id", "Name", "Acronym", "Phone Digits"};
 	
 	public CountryTableModel(Set<Country> countries) {
 		this.countries = new ArrayList<>(countries);
@@ -51,13 +51,16 @@ class CountryTableModel extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		
 		switch (columnIndex) {
-			case 0:
+                        case 0:
+                                return this.countries.get(rowIndex).getId();
+                                
+			case 1:
 				return this.countries.get(rowIndex).getName();
 				
-			case 1:
+			case 2:
 				return this.countries.get(rowIndex).getAcronym();
 				
-			case 2:
+			case 3:
 				return this.countries.get(rowIndex).getPhoneDigits();
 	
 			default:
@@ -66,6 +69,30 @@ class CountryTableModel extends AbstractTableModel {
 		
 		return null;
 	}
+        @Override
+        public void setValueAt(Object value, int rowIndex, int columnIndex) {
+          switch(columnIndex) {
+              case 0:
+                    this.countries.get(rowIndex).setName((String) value);
+                    break;
+              case 1:
+                    this.countries.get(rowIndex).setAcronym((String) value);
+                    break;
+              case 2:
+                    this.countries.get(rowIndex).setPhoneDigits(Integer.parseInt((String) value));
+                    break;
+          }
+          this.fireTableRowsUpdated(rowIndex, rowIndex);
+        }
+
+    public Country get(int rowIndex) {
+        return countries.get(rowIndex);
+    }
+    
+    public void retira(int rowIndex) {
+        this.countries.remove(rowIndex);
+        this.fireTableRowsDeleted(rowIndex, rowIndex);
+    }
 	
 }
 
@@ -81,11 +108,13 @@ public class CountryWindow extends JFrame {
 	private void create () {
 		Country c = new Country();
                 CountryDao cd = new CountryDao();
+                
 		c.setName(name.getText());
 		c.setAcronym(acronym.getText());
 		c.setPhoneDigits(new Integer(phoneDigits.getText()));
-		
+				
                 cd.insert(c);
+                    
 		if (this.countries.add(c)) {
 			JOptionPane.showMessageDialog(this, "Country successfully added!");
 			this.table.setModel(new CountryTableModel(countries));
@@ -94,6 +123,19 @@ public class CountryWindow extends JFrame {
 			JOptionPane.showMessageDialog(this, "Sorry, country already exists");
 		
 	}
+        
+        private void read () {
+            new CountryDao().getListaCountry();
+            table.setModel(new CountryTableModel(countries));
+        }
+        
+        private void delete(){
+            int rowIndex = table.getSelectedRow();
+            
+            int id = (int) table.getValueAt(rowIndex, 0);
+            
+            new CountryDao().delete(id);
+        }
 	
 	public CountryWindow(Set<Country> countries) {
 		this.countries = countries;
@@ -140,6 +182,19 @@ public class CountryWindow extends JFrame {
 		panelInclusion.add(btnCreate);
 		btnCreate.addActionListener(e -> this.create());
 		
+                JButton btnList = new JButton("List");
+                panelInclusion.add(btnList);
+                btnList.addActionListener(e -> this.read());
+                
+                /*JButton btnUpdate = new JButton("Update");
+                panelInclusion.add(btnUpdate);
+                btnUpdate.addActionListener(e -> cd.delete());
+                */
+                
+                JButton btnDelete = new JButton("Delete");
+                panelInclusion.add(btnDelete);
+                btnDelete.addActionListener(e -> this.delete());
+
 		JButton btnClose = new JButton("Close");
 		panelInclusion.add(btnClose);
 		btnClose.addActionListener(e -> this.dispose());
