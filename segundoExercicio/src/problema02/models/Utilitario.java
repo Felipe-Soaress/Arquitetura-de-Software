@@ -35,7 +35,7 @@ public class Utilitario {
     
     public static Pais verificaPais(String nome, ArrayList<Pais> paisList){
         
-        if(nome.length() == 3){
+        if(nome.length() == 2){ // As siglas de países possuem dois caracteres, por isso é analisado desta forma
            return verificaPaisPorSigla(nome, paisList);
         }
         
@@ -58,14 +58,6 @@ public class Utilitario {
         }
         
         return null;
-    }
-    
-    //Faz a verificação se codigo do telefone é o mesmo do país digitado
-    public static boolean verificaCodigoTelefone(Pais pais, String telefone){
-    
-        //Retorna verdadeiro se iguais e falso se diferentes
-        return pais.getCodigoTelefone().equals(telefone.substring(0,2));
-    
     }
     
     //Função para calcular o limite

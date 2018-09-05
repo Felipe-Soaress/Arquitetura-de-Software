@@ -41,6 +41,7 @@ public class jfCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jtIdade = new javax.swing.JTextField();
         jbClienteCadastrarPais = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Problema02");
@@ -88,10 +89,25 @@ public class jfCliente extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jbGravar)
+                .addGap(18, 18, 18)
+                .addComponent(jbClienteCadastrarPais)
+                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -111,13 +127,8 @@ public class jfCliente extends javax.swing.JFrame {
                                 .addComponent(jtPais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                                 .addComponent(jtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                                 .addComponent(jtIdade, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jbGravar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbClienteCadastrarPais)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                            .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,9 +154,12 @@ public class jfCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGravar)
+                    .addComponent(jButton1)
                     .addComponent(jbClienteCadastrarPais))
                 .addGap(22, 22, 22))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("jbVoltar");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -177,7 +191,7 @@ public class jfCliente extends javax.swing.JFrame {
         }else if(pais == null){
             JOptionPane.showMessageDialog(jbGravar, "Erro: Pais não existe ou não foi cadastrado");
             
-        }else if(!Utilitario.verificaCodigoTelefone(pais ,telefone)){ //CRIEI A FUNÇÃO PARA VERIFICAR, SÓ PRECISO VER COMO VOU RECEBER AQUI O ARRAY DE PAÍSES PARA MANDAR PARA O UTILITARIO
+        }else if( !(pais.getCodigoTelefone().equals(telefone.substring(0,2))) ){ //Faz a verificação se codigo do telefone é o mesmo do país digitado
             JOptionPane.showMessageDialog(jbGravar, "Erro: Código do País inválido");
 
         }else{
@@ -189,7 +203,7 @@ public class jfCliente extends javax.swing.JFrame {
             clienteLista.add(c);
             
             
-            //Printando informações do cadastradas
+            //Printando informações cadastradas
             JOptionPane.showMessageDialog(jbGravar,"\nNome: " + c.getNome()
             + "\nTelefone: " + c.getTelefone()
             + "\nLimite de Crédito: " + c.getLimiteCredito()
@@ -197,8 +211,6 @@ public class jfCliente extends javax.swing.JFrame {
             + "\nIdade: " + c.getIdade());
             JOptionPane.showMessageDialog(jbGravar, "Informações Adicionadas com sucesso!");
             
-            //fechar janela de cadastro cliente (obs: janela principal sempre fica aberta)
-            dispose();
         }
 
         
@@ -218,6 +230,13 @@ public class jfCliente extends javax.swing.JFrame {
  
         TelaPais.setVisible(true);
     }//GEN-LAST:event_jbClienteCadastrarPaisActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        //Irá fechar a janela de listagem (obs: janela principal semrpe aberta)
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +275,7 @@ public class jfCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
