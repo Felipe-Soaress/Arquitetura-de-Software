@@ -7,10 +7,15 @@ package edu.utfpr.cp.sa.dao;
 
 import edu.utfpr.cp.sa.entity.Country;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 
 /**
@@ -18,14 +23,14 @@ import java.util.ArrayList;
  * @author leona
  */
 public class CountryDao {
-    private final Connection conn;
+    private Connection conn;
     
     public CountryDao(){
         this.conn = new DatabaseConnection().getConnection();
     }
     
     public void insert(Country country){
-        String sql = "insert into country (countryName, acronym, phoneDigits) values(?,?,?)";
+    	String sql = "insert into country (countryName, acronym, phoneDigits) values(?,?,?)";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             
@@ -39,11 +44,12 @@ public class CountryDao {
             ex.printStackTrace();
             throw new RuntimeException(ex);
         }
-        
     }
-    public ArrayList<Country> getListaCountry(){
+    
+    public Set<Country> getListaCountry(){
         String sql = "select * from country";
-        ArrayList<Country> cd = new ArrayList();
+        Set<Country> cd = new HashSet<Country>();
+        
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -67,14 +73,15 @@ public class CountryDao {
         }
     }
     
+    //não está dando certo
     public void update(Country country){
-        String sql = "update country set countryName = ?, acronym = ?, phoneDigits = ? where countryId = ?";
+        String sql = "update country set acronym = ?, phoneDigits = ? where countryName = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setString(1, country.getName());
-            stmt.setString(2, country.getAcronym());
-            stmt.setInt(3, country.getPhoneDigits());
-            stmt.setInt(4, country.getId());
+            //stmt.setString(1, country.getName());
+            stmt.setString(1, country.getAcronym());
+            stmt.setInt(2, country.getPhoneDigits());
+            stmt.setString (3, country.getName());
 
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -82,12 +89,12 @@ public class CountryDao {
         }
     }
     
-    public void delete(int id){
-        String sql = "delete from country where countryId = ?";
+    //Para deletar é usado o nome do país, já que o nome é único
+    public void delete(String countryName){
+        String sql = "delete from country where countryName = ?";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
-            stmt.setInt(1, id);
-            //stmt.setString(1, country.getName());
+            stmt.setString(1, countryName);
             stmt.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();

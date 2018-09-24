@@ -22,6 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
+import java.awt.Point;
 
 class CountryTableModel extends AbstractTableModel {
 	
@@ -107,37 +110,43 @@ public class CountryWindow extends JFrame {
 	
 	private void create () {
 		Country c = new Country();
-                CountryDao cd = new CountryDao();
+        CountryDao cd = new CountryDao();
                 
 		c.setName(name.getText());
 		c.setAcronym(acronym.getText());
 		c.setPhoneDigits(new Integer(phoneDigits.getText()));
 				
-                cd.insert(c);
+        cd.insert(c);
                     
 		if (this.countries.add(c)) {
 			JOptionPane.showMessageDialog(this, "Country successfully added!");
-			this.table.setModel(new CountryTableModel(countries));
-		
+			
 		} else
 			JOptionPane.showMessageDialog(this, "Sorry, country already exists");
 		
 	}
         
-        private void read () {
-            new CountryDao().getListaCountry();
-            table.setModel(new CountryTableModel(countries));
-        }
+    private void read () {
+    	table.setModel(new CountryTableModel(new CountryDao().getListaCountry()));
+    }
+    
+    private void update () {
+    	Country c = new Country();
         
-        private void delete(){
-            int rowIndex = table.getSelectedRow();
-            
-            int id = (int) table.getValueAt(rowIndex, 0);
-            
-            new CountryDao().delete(id);
-        }
+		c.setName(name.getText());
+		c.setAcronym(acronym.getText());
+		c.setPhoneDigits(new Integer(phoneDigits.getText()));
+		
+		new CountryDao().update(c);
+    }
+    
+    
+    private void delete(){
+    	new CountryDao().delete(name.getText());
+    }
 	
 	public CountryWindow(Set<Country> countries) {
+		setTitle("Country Management");
 		this.countries = countries;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -155,7 +164,7 @@ public class CountryWindow extends JFrame {
 		
 		JPanel panelInclusion = new JPanel();
 		contentPane.add(panelInclusion, BorderLayout.NORTH);
-		panelInclusion.setLayout(new GridLayout(4, 2, 0, 0));
+		panelInclusion.setLayout(new GridLayout(6, 3, 0, 0));
 		
 		JLabel lblName = new JLabel("Name");
 		panelInclusion.add(lblName);
@@ -182,18 +191,18 @@ public class CountryWindow extends JFrame {
 		panelInclusion.add(btnCreate);
 		btnCreate.addActionListener(e -> this.create());
 		
-                JButton btnList = new JButton("List");
-                panelInclusion.add(btnList);
-                btnList.addActionListener(e -> this.read());
+		JButton btnList = new JButton("List");
+        panelInclusion.add(btnList);
+        btnList.addActionListener(e -> this.read());
                 
-                /*JButton btnUpdate = new JButton("Update");
-                panelInclusion.add(btnUpdate);
-                btnUpdate.addActionListener(e -> cd.delete());
-                */
+        JButton btnUpdate = new JButton("Update");
+        panelInclusion.add(btnUpdate);
+        btnUpdate.addActionListener(e -> this.update());
+        
                 
-                JButton btnDelete = new JButton("Delete");
-                panelInclusion.add(btnDelete);
-                btnDelete.addActionListener(e -> this.delete());
+        JButton btnDelete = new JButton("Delete");
+        panelInclusion.add(btnDelete);
+        btnDelete.addActionListener(e -> this.delete());
 
 		JButton btnClose = new JButton("Close");
 		panelInclusion.add(btnClose);
